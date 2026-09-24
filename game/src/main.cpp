@@ -15,22 +15,23 @@ int main()
 
     while (!WindowShouldClose())
     {
-        // Class Lab
-		float totalTime = GetTime();
-        float frameTime =GetFrameTime();
-
-        positionX += speed * frameTime;
-
-        if (positionX > 650.0f || positionX < 150.0f)
-        {
-            speed = -speed;
-        }
-
         BeginDrawing();
         ClearBackground(WHITE);
 
         DrawCircleV(GetMousePosition(), 20.0f, RED);
+
+		// Draw a circle that moves horizontally across the screen
         DrawCircleV(Vector2(positionX, positionY), 15.0f, RED);
+		// Get frame time for move calculation
+        float totalTime = GetTime();
+        float frameTime = GetFrameTime();
+		// Update the position of the circle based on speed and frame time
+        positionX += speed * frameTime;
+		// Reverse direction if the circle hits the set values
+        if (positionX > 650.0f || positionX < 150.0f)
+        {
+            speed = -speed;
+        }
 
         EndDrawing();
     }
